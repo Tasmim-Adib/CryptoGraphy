@@ -1,6 +1,6 @@
 
-upperCaseLetter = []
-lowerCaseLetter = []
+letter = []
+
 def preparePlainText():
 	f = open("input.txt","r")
 	string =""
@@ -29,18 +29,18 @@ def code(x):
     if keyText[x].islower():
         return ord(keyText[x]) - 97
     else:
-        return ord(keyText[x]) - 65
+        return ord(keyText[x]) - 65 + 26
 
 def encryption(plainText, keyText):
 
     cipherText = ""
     for i in range(len(plainText)):
         if plainText[i].isupper():
-            x = (ord(plainText[i]) - 65 + code(i)) % 26
-            cipherText += upperCaseLetter[x]
+            x = (ord(plainText[i]) - 65 + 26 + code(i)) % 52
+            cipherText += letter[x]
         else:
-            x = (ord(plainText[i]) - 97 + code(i)) % 26
-            cipherText += lowerCaseLetter[x]
+            x = (ord(plainText[i]) - 97 + code(i)) % 52
+            cipherText += letter[x]
 
     # print(cipherText)
     n = 5
@@ -67,21 +67,23 @@ def decryption(keyText):
     originalText = ""
     for i in range(len(cipherText)):
         if cipherText[i].isupper():
-            x = (ord(cipherText[i]) - 65 - code(i)) % 26
-            originalText += upperCaseLetter[x]
+            x = (ord(cipherText[i]) - 65 + 26 - code(i)) % 52
+            originalText += letter[x]
         else:
-            x = (ord(cipherText[i]) - 97 - code(i)) % 26
-            originalText += lowerCaseLetter[x]
+            x = (ord(cipherText[i]) - 97 - code(i)) % 52
+            originalText += letter[x]
 
     print("After Decryption :",originalText)
 
 
 for i in range(0,26):
-    upperCaseLetter.append(chr(i + 65))
-    lowerCaseLetter.append(chr(i + 97))    
+    letter.append(chr(i + 97)) 
+
+for i in range(26,52):
+    letter.append(chr(i - 26 + 65)) 
 
 plainText = preparePlainText()
 keyText = prepareKey()
 encryption(plainText, keyText)
 decryption(keyText)
-
+# print(letter)

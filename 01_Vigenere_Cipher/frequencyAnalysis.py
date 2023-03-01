@@ -61,7 +61,7 @@ def getFrequencyOrder(message):
     return ''.join(freqOrder)
 
 #calculating the frequency match score
-def frequencyMatchScore(message):
+def findMatchingScore(message):
     matchScore = 0
     freqOrder = getFrequencyOrder(message)
     #find match in most common letters

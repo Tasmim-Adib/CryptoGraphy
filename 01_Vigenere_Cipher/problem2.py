@@ -12,7 +12,13 @@ def prepareCipherText():
 
 def main():
     message = prepareCipherText()
-    attack.decryptVigenere(message)
+
+    #repeatedSequence = FindKeyLength.findPattern(message)
+    #print(repeatedSequence)
+
+    #possibleKeyLength = FindKeyLength.predictKeyLength(message)
+    #print(possibleKeyLength)
+    attack.decryptVigenereCipher(message)
     
 
 if __name__ == '__main__':

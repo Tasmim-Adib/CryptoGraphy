@@ -1,6 +1,6 @@
 MAX_KEY_LENGTH = 16     #we will not examine more than 16
 
-def findRepeatedSequenceSpacing(message):
+def findPattern(message):
     message = message.upper()   #convert the message to upperCase
     seqSpacings = {}    #declaring dictionary for sequence spacing
 
@@ -35,7 +35,7 @@ def getFactors(num):        #calculating factors
 def getItemAtIndexOne(x):
     return x[1]
 
-def getMostCommonFactors(seqFactors):
+def getMostFrequetFactors(seqFactors):
     factorCounts = {}       #key is a factor and it's value is how often it occurs
     for seq in seqFactors:
         factorList = seqFactors[seq]
@@ -54,17 +54,17 @@ def getMostCommonFactors(seqFactors):
     #print(factorsByCount)
     return factorsByCount
 
-def findKeyLength(message):
-    repeatedSeqSpacings = findRepeatedSequenceSpacing(message)
-    #print(repeatedSeqSpacings)
+def predictKeyLength(message):
+    repeatedPatterns = findPattern(message)
+    print(repeatedPatterns)
     seqFactors = {}
-    for i in repeatedSeqSpacings:
+    for i in repeatedPatterns:
         seqFactors[i] = []
-        for j in repeatedSeqSpacings[i]:
+        for j in repeatedPatterns[i]:
             seqFactors[i].extend(getFactors(j))   #find every unique factor for every sequence
     
-    factorsByCount = getMostCommonFactors(seqFactors)
-    #print(factorsByCount)
+    factorsByCount = getMostFrequetFactors(seqFactors)
+    print(factorsByCount)
     
     possibleKeyLength = []
     for i in factorsByCount:
