@@ -1,3 +1,8 @@
+# Author : Sagar Chandra Karmaker Babu
+# Batch : 25
+# Department of Computer Science and Engineering
+# University of Dhaka
+
 import sys
 from BitVector import *
 import DES
